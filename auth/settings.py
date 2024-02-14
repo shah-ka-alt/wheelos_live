@@ -52,6 +52,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.static.StaticFilesMiddleware',
+    'django.middleware.media.MediaMiddleware'
 ]
 
 ROOT_URLCONF = 'auth.urls'
