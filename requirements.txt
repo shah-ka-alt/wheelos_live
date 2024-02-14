@@ -36,8 +36,6 @@ oauth2==1.9.0.post1
 oauthlib==3.2.2
 packaging==23.2
 pep8==1.7.1
-phonepe==1.0.1
-phonepe-sdk==1.1.0
 Pillow==9.5.0
 psycopg==3.1.17
 psycopg2==2.9.9
