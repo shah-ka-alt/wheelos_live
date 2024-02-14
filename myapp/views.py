@@ -143,6 +143,7 @@ def tripOver(request, id):
         
         new_booking = mapPointers(id=curr.var)
         new_booking.user = User.objects.get(username=curr.name)
+        new_booking.email = new_booking.user.email
         new_booking.status = False
         new_booking.photo = curr.photo 
         new_booking.rate = curr.rate  
