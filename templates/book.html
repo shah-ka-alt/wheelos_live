@@ -1,0 +1,138 @@
+{% if request.user.is_authenticated %}
+  <head>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th, td {
+        text-align: left;
+        padding: 18px;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      a {
+        color: blue;
+        text-decoration: none;
+      }
+      .my-marked-locations {
+        font-family: Arial, sans-serif;
+        font-size: 24px;
+        color: #333;
+        text-align: center;
+      }
+      .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .image-gallery img {
+            max-width: 10%;
+            height: auto;
+        }
+        .show {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            color: #333;
+            text-align: right;
+        }
+        .navbar {
+          background-color: #333;
+          overflow: hidden;
+          width: 100%;
+          position: fixed;
+          top: 0;
+          z-index: 1000; 
+      }
+
+      .navbar a {
+          float: left;
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 17px;
+          transition: background-color 0.3s;
+          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+      }
+
+      .navbar a:hover {
+          background-color: #ddd;
+          color: black;
+      }
+
+      .navbar-brand {
+          float: left;
+          display: block;
+          color: white;
+          text-align: center;
+          padding: 14px 16px;
+          text-decoration: none;
+          font-size: 20px;
+          font-weight: bold;
+          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
+      }
+
+      .navbar a.active {
+          background-color: #04AA6D;
+          color: white;
+      }
+      .navbar-right {
+          float: right;
+          margin-right: 20px;
+      }
+    </style>
+  </head>
+  <div class="navbar">
+    <a href="#" class="navbar-brand">WheelOS</a>
+    <a href="{% url 'display' %}" class="active">Home</a>
+    <!-- <a href="{% url 'profile' %}">Profile</a> -->
+    <div class="navbar-right">
+    <a href="{% url 'need' %}"><b>Book more</b></a>
+    <a href="{% url 'profile' %}"><b>Profile</b></a>
+    <a href="{% url 'logout' %}"><small>Logout</small></a>
+    </div>
+</div>
+<br><br><br>
+  <h1 class="container my-marked-locations">MY BOOKINGS</h1>
+  <table>
+    <tr>
+      <th>Sr. No</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Rate</th>
+      <th>photo</th>
+      <th>Name</th>
+      <th>E-mail</th>
+      <th>Find way</th>
+      <th>status</th>
+    </tr>
+    {% for list in lists %}
+      <tr>
+        <td><b>{{forloop.counter}}</b></td>
+        <td><b>{{list.latitude}}</b></td>
+        <td><b>{{list.longitude}}</b></td>
+        <td><b>{{list.rate}}</b></td>
+        <td><div class="image-gallery">
+            <img src="{{list.photo.url}}" alt="Photo">
+        </div></td>
+        <td><b>{{list.name}}</b></td>
+        <td><b><a href="mailto:{{list.email}}">Contact</a></b></td>
+        <td><b><a href="{% url 'find' id=list.id %}">Way</a></b></td>
+        <td><b><a href="{% url 'tripOver' id=list.id %}">Click if trip over</a></b></td>
+
+
+      </tr>
+    {% endfor %}
+  </table>
+  <!-- <h3 style="text-align: right;"><a href="need">Book More</a></h3>
+  <h3><a href="logout">Logout</a></h3> -->
+
+{% else %}
+  <a href="login">Login</a>
+{% endif %}
