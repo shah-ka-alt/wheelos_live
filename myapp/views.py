@@ -161,12 +161,28 @@ def tripOver(request, id):
 
         past.save()
         
+        parkerOver(curr.user.email,new_booking.user)
+        providerOver(new_booking.email,curr.user)
+
         
         curr.delete()
         return redirect('book')
     except mapPointers.DoesNotExist:
         return redirect('book')
 
+def parkerOver(user_email, curr):
+    subject = 'Booking over'
+    context = {'curr': curr}
+    message = render_to_string('parkerOver.html', context)
+    sender_email = 'team.wheelos@gmail.com'
+    send_mail(subject, message, sender_email, [user_email])
+
+def providerOver(user_email,curr):
+    subject = 'Booking over'
+    context = {'curr': curr,}
+    message = render_to_string('providerOver.html', context)
+    sender_email = 'team.wheelos@gmail.com'
+    send_mail(subject, message, sender_email, [user_email])
 def payment(request):
     return render(request, 'payment.html')
 
