@@ -163,7 +163,6 @@ def tripOver(request, id):
         
         parkerOver(curr.user.email,new_booking.user)
         providerOver(new_booking.email,curr.user)
-
         
         curr.delete()
         return redirect('book')
@@ -183,6 +182,7 @@ def providerOver(user_email,curr):
     message = render_to_string('providerOver.html', context)
     sender_email = 'team.wheelos@gmail.com'
     send_mail(subject, message, sender_email, [user_email])
+
 def payment(request):
     return render(request, 'payment.html')
 
