@@ -12,6 +12,8 @@ import uuid
 import time
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.urls import reverse
+
 
 # Create your views here.
 
@@ -92,10 +94,20 @@ def pdashboard(request):
     earn = Earning.objects.get(user = request.user)
     return render(request,'pdashboard.html',locals())
 
-def delLocation(request,pk=None):
+def delLocation(request, pk=None):
     hw = get_object_or_404(mapPointers, id=pk)
+    current_url = request.META.get('HTTP_REFERER')
+
     hw.delete()
-    return redirect("profile")
+
+    if 'pdashboard' in current_url:
+        redirect_url = reverse('pdashboard')
+    elif 'profile' in current_url:
+        redirect_url = reverse('profile')
+    else:
+        redirect_url = reverse('display')
+
+    return redirect(redirect_url)
 
 
 def show(request):
