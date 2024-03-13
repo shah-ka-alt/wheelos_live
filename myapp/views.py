@@ -50,7 +50,7 @@ def login(request):
 
         if user is not None:
             auth.login(request,user)
-            return render(request, 'display.html',{'username':username})
+            return redirect('display')
         else:
             messages.info(request, 'Invalid credentials')
             return redirect('login')
