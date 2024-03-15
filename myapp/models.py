@@ -13,14 +13,6 @@ class mapPointers(models.Model):
     booked_by = models.CharField(default="empty", max_length=500)
     email = models.EmailField(default = "megh.shah2003@gmail.com",max_length=254)
     Booked_email = models.EmailField(default = "sample@gmail.com",max_length=254)
-
-    def save(self,*args,**kwargs):
-        super().save(*args,**kwargs)
-        img = Image.open(self.photo.path)
-        if img.height > 1000 or image.width > 700:
-            output_size = (800,500)
-            img.thumbnail(output_size)
-            img.save(self.photo.path)
     
     def __str__(self):
         return f'MapPointer {self.id} - User: {self.user.username}'
