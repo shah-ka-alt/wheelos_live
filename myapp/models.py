@@ -8,7 +8,7 @@ class mapPointers(models.Model):
     latitude = models.FloatField()
     longitude = models.FloatField()
     rate = models.IntegerField()
-    photo = models.ImageField()
+    photo = models.ImageField(upload_to = 'media/')
     status = models.BooleanField(default=False)
     booked_by = models.CharField(default="empty", max_length=500)
     email = models.EmailField(default = "megh.shah2003@gmail.com",max_length=254)
