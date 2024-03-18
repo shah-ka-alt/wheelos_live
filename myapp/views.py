@@ -12,6 +12,8 @@ import uuid
 import time
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from django.core.management.base import BaseCommand
+from datetime import datetime, timedelta
 from django.urls import reverse
 
 
@@ -20,8 +22,8 @@ from django.urls import reverse
 
 def register(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        email = request.POST['email']
+        username = request.POST['username'].strip()
+        email = request.POST['email'].strip().lower()
         password = request.POST['password']
         password2 = request.POST['password2']
 
@@ -46,7 +48,7 @@ def register(request):
 
 def login(request):
     if request.method == 'POST':
-        username = request.POST['username']
+        username = request.POST['username'].strip()
         password = request.POST['password']
         user = authenticate(request, username=username , password = password)
 
@@ -56,8 +58,6 @@ def login(request):
         else:
             messages.info(request, 'Invalid credentials')
             return redirect('login')
-        
-
     else:
         return render(request, 'login.html')
     
@@ -93,6 +93,7 @@ def pdashboard(request):
     lists = mapPointers.objects.filter(user = request.user)
     earn = Earning.objects.get(user = request.user)
     return render(request,'pdashboard.html',locals())
+
 
 def delLocation(request, pk=None):
     hw = get_object_or_404(mapPointers, id=pk)
@@ -175,6 +176,7 @@ def tripOver(request, id):
         
         parkerOver(curr.user.email,new_booking.user)
         providerOver(new_booking.email,curr.user)
+
         
         curr.delete()
         return redirect('book')
@@ -194,6 +196,8 @@ def providerOver(user_email,curr):
     message = render_to_string('providerOver.html', context)
     sender_email = 'team.wheelos@gmail.com'
     send_mail(subject, message, sender_email, [user_email])
+
+
 
 def payment(request):
     return render(request, 'payment.html')
@@ -267,3 +271,37 @@ def profile(request):
 def profileShow(request):
     lists = mapPointers.objects.filter(user = request.user)
     return render(request, 'profileShow.html',locals())
+
+
+def my_view(request):
+    current_time = datetime.now().time()
+    if current_time.hour == 10 and current_time.hour < 11:
+        bookings_to_update = myBooking1.objects.all()
+        
+        for booking in bookings_to_update:
+            try:
+                new_booking = mapPointers.objects.get(id=booking.var)
+                new_booking.user = User.objects.get(username=booking.name)
+                new_booking.email = new_booking.user.email
+                new_booking.status = False
+                new_booking.photo = booking.photo 
+                new_booking.rate = booking.rate  
+                new_booking.latitude = booking.latitude  
+                new_booking.longitude = booking.longitude
+                new_booking.booked_by = "empty"
+                new_booking.save()
+
+                past = Previous()
+                past.user = new_booking.user
+                past.name = new_booking.user
+                past.latitude = booking.latitude  
+                past.longitude = booking.longitude
+                past.rate = booking.rate
+                past.save()
+                
+                booking.delete()
+                
+                print(f"Booking updated successfully")
+            except Exception as e:
+                print(f"An error occurred: {str(e)}")
+    return render(request, 'display.html')
