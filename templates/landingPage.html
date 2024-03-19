@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 81vh;
+            background: linear-gradient(70deg, #a9fda6, #87fa83, #75eef7, #b6f4f7);
+            background-size: 400% 400%;
+            animation: gradientAnimation 6s ease infinite; 
+            font-family: Arial, sans-serif; 
+            line-height: 1.6;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            width: 500px;
+            height: 330px;
+            margin: 20px auto;
+            padding: 50px;
+            margin-top: 110px;
+            background-color: #e3fcf0;
+            border-radius: 10px;
+            box-shadow: 0 50px 50px rgba(1, 1, 0, 0.1);
+            text-align: center;
+            border: 5px solid #fde86f;
+        }
+
+        .welcome-message {
+            font-size: 48px;
+            font-weight: bold;
+            margin-top: 0px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .main-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .register-btn-container {
+            padding: 12px 40px;
+            font-size: 18px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
+            margin: 0 10px;
+            cursor: pointer;
+            border: none;
+        }
+        .login-btn-container {
+            padding: 8px 20px;
+            font-size: 18px;
+            background-color: #ffffff;
+            color: #1e3ecf;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease-in-out;
+            margin: 0 10px;
+            cursor: pointer;
+            border: 0.1px solid #8ba0fd;
+        }
+
+
+        .login-btn-container:hover {
+            background-color: #0056b3;
+            color: #ffffff;
+        }
+        .register-btn-container:hover {
+            background-color: #ffffff;
+            color: #0056b3;
+            border: 0.1px solid #8ba0fd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="welcome-message">WheelOS</h1>
+    <p class="main-text">
+        Rent a vehicle for your next adventure or optimize your parking space by providing
+        it to others with WheelOS
+    </p>
+    <div class="btn-container">
+        <a href="{% url 'register' %}" class="register-btn-container"><b>Register</b></a>
+        <br><br>
+        <small style="color: rgb(104, 104, 101);"><b>------- If already registered with us -------</b></small><br style="height: 0%;">
+        <br>
+        <a href="{% url 'login' %}" class="login-btn-container"><small><b>Login</b></small></a>
+    </div>
+</div>
+</body>
+</html>
