@@ -19,6 +19,8 @@ from django.urls import reverse
 
 # Create your views here.
 
+def landingPage(request):
+    return render(request,'landingPage.html')
 
 def register(request):
     if request.method == 'POST':
