@@ -2,105 +2,177 @@
 <html>
 <head>
     <title>Login Here</title>
+</head>
+<body>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 0;
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+        *{
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Poppins', sans-serif;
         }
-
-        h1 {
-            text-align: center;
-            margin-top: 50px;
-            color: #333;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        html,body{
+          display: grid;
+          height: 100%;
+          width: 100%;
+          place-items: center;
+          background: #f2f2f2;
+          /* background: linear-gradient(-135deg, #c850c0, #4158d0); */
         }
-
+        ::selection{
+          background: #4158d0;
+          color: #fff;
+        }
+        .wrapper{
+          width: 380px;
+          background: #fff;
+          border-radius: 15px;
+          box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+        }
+        .wrapper .title{
+          font-size: 35px;
+          font-weight: 600;
+          text-align: center;
+          line-height: 100px;
+          color: #fff;
+          user-select: none;
+          border-radius: 15px 15px 0 0;
+          background: linear-gradient(-135deg, #c850c0, #4158d0);
+        }
+        .wrapper form{
+          padding: 10px 30px 50px 30px;
+        }
+        .wrapper form .field{
+          height: 50px;
+          width: 100%;
+          margin-top: 20px;
+          position: relative;
+        }
+        .wrapper form .field input{
+          height: 100%;
+          width: 100%;
+          outline: none;
+          font-size: 17px;
+          padding-left: 20px;
+          border: 1px solid lightgrey;
+          border-radius: 25px;
+          transition: all 0.3s ease;
+        }
+        .wrapper form .field input:focus,
+        form .field input:valid{
+          border-color: #4158d0;
+        }
+        .wrapper form .field label{
+          position: absolute;
+          top: 50%;
+          left: 20px;
+          color: #999999;
+          font-weight: 400;
+          font-size: 17px;
+          pointer-events: none;
+          transform: translateY(-50%);
+          transition: all 0.3s ease;
+        }
+        form .field input:focus ~ label,
+        form .field input:valid ~ label{
+          top: 0%;
+          font-size: 16px;
+          color: #4158d0;
+          background: #fff;
+          transform: translateY(-50%);
+        }
+        form .content{
+          display: flex;
+          width: 100%;
+          height: 50px;
+          font-size: 16px;
+          align-items: center;
+          justify-content: space-around;
+        }
+        form .content .checkbox{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        form .content input{
+          width: 15px;
+          height: 15px;
+          background: red;
+        }
+        form .content label{
+          color: #262626;
+          user-select: none;
+          padding-left: 5px;
+        }
+        form .content .pass-link{
+          color: "";
+        }
+        form .field input[type="submit"]{
+          color: #fff;
+          border: none;
+          padding-left: 0;
+          margin-top: -10px;
+          font-size: 20px;
+          font-weight: 500;
+          cursor: pointer;
+          background: linear-gradient(-135deg, #c850c0, #4158d0);
+          transition: all 0.3s ease;
+        }
+        form .field input[type="submit"]:active{
+          transform: scale(0.95);
+        }
+        form .signup-link{
+          color: #262626;
+          margin-top: 20px;
+          text-align: center;
+        }
+        form .pass-link a,
+        form .signup-link a{
+          color: #4158d0;
+          text-decoration: none;
+        }
+        form .pass-link a:hover,
+        form .signup-link a:hover{
+          text-decoration: underline;
+        }
         h4 {
             color: #e74c3c;
             text-align: center;
             margin-top: 20px;
         }
-
-        form {
-            margin: 0 auto;
-            width: 50%;
-            padding: 20px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        form p {
-            text-align: center;
-            font-size: 18px;
-            color: #333;
-        }
-
-        form input[type="text"],
-        form input[type="email"],
-        form input[type="password"] {
-            width: calc(100%);
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-
-        form input[type="submit"] {
-            background-color: #2ecc71;
-            color: #fff;
-            padding: 10px;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            border-radius: 5px;
-            font-size: 18px;
-            transition: background-color 0.3s;
-        }
-
-        form input[type="submit"]:hover {
-            background-color: #27ae60;
-        }
-
-        h3 {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        h3 a {
-            color: #3498db;
-            text-decoration: none;
-        }
-
-        h3 a:hover {
-            text-decoration: underline;
-        }
     </style>
-</head>
-<body>
-    <h1>Login Here</h1>
-
-    {% for message in messages %}
+    <div class="wrapper">
+        <div class="title">
+            Login Here
+        </div>
+        {% for message in messages %}
         <h4>{{ message }}</h4>
-    {% endfor %}
+        {% endfor %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="field">
+                <input type="text" name="username"  id="usernamez"  required />
+                <label>Username</label>
+            </div>
+            <div class="field">
+                <input type="password" name="password" id="password" required />
+                <label>Password</label>
+            </div>
+            <div class="content">
 
-    <form action="" method="POST">
-        {% csrf_token %}
-        <p>Enter Username</p>
-        <input type="text" id="usernamez" name="username" placeholder="Your username">
-        <p>Enter Password</p>
-        <input type="password" name="password" id="password" placeholder="Your password">
-        <input type="submit" value="Login">
-        <br>
-        <br>
-        <div class="forget" style="text-align: right;"><a href="{% url 'password_reset' %}">Forgot password?</a></div>
-    </form>
-
-    <h3>Don't have an account? <a href="{% url 'register' %}">Register here</a></h3>
+                <div class="pass-link">
+                    <a href="{% url 'password_reset' %}">Forgot password?</a>
+                </div>
+            </div>
+            <div class="field">
+            <input type="submit" value="Login">
+            </div>
+            <div class="signup_link">
+                Not a member? <a href="{% url 'register' %}">Signup</a>
+            </div>    
+           
+        </form>
+    </div>   
 </body>
 </html>
