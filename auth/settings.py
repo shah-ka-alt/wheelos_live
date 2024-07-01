@@ -25,7 +25,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG","False").lower() == "True"
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+# ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = ["*"]
 
 import dj_database_url
 # Application definition
@@ -89,7 +90,7 @@ DATABASES = {
     }
 }
 database_url = os.environ.get("DATABASE_URL")
-DATABASES['default'] = dj_database_url.parse(database_url)
+DATABASES['default'] = dj_database_url.parse('postgresql://proddb_3x0w_user:m7gQRr8YuaqcxRSaYQXWfdYOFurj2krI@dpg-cq15oq6ehbks73epvujg-a.oregon-postgres.render.com/proddb_3x0w')
 
 # DATABASES = {
 #     'default': {
