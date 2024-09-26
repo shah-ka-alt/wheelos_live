@@ -39,8 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myapp',
+    'storages',
 ]
-
 
 
 
@@ -76,8 +76,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'auth.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
+# # Database
+# # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -90,7 +90,7 @@ DATABASES = {
     }
 }
 database_url = os.environ.get("DATABASE_URL")
-DATABASES['default'] = dj_database_url.parse('postgresql://proddb_ebm4_user:l8jDq2YYWebwrn7Uyb0J6i4Uivv3VBk6@dpg-cr60913qf0us739thvmg-a.oregon-postgres.render.com/proddb_ebm4')
+DATABASES['default'] = dj_database_url.parse('postgresql://wheelos_bq6n_user:4FMMeBgIAvqGhpG2AbtCZ7yNOm8ujQ2O@dpg-crqpghe8ii6s73bhbv6g-a.oregon-postgres.render.com/wheelos_bq6n')
 
 # DATABASES = {
 #     'default': {
@@ -160,3 +160,16 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'team.wheelos@gmail.com'  
 EMAIL_HOST_PASSWORD = 'ygki brbe gmsn wkvh'
+
+
+AWS_ACCESS_KEY_ID = 'AKIA5FTZAIWC2OHD2QJQ'
+AWS_SECRET_ACCESS_KEY = os.environ.get('SECRET')
+AWS_STORAGE_BUCKET_NAME = 'wheelos'
+AWS_S3_REGION_NAME = 'us-east-2'
+AWS_S3_CUSTOM_DOMAIN = 'wheelos.s3.amazonaws.com'
+
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+MEDIA_URL = f'https://wheelos.s3.us-east-2.amazonaws.com/media/'
+
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
