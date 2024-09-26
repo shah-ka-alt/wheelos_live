@@ -65,6 +65,8 @@ rsa==4.9
 six==1.16.0
 social-auth-app-django==5.4.0
 social-auth-core==4.5.1
+boto3==1.28.11
+django-storages==1.13.2
 soupsieve==2.5
 sqlparse==0.4.4
 typing-inspect==0.9.0
