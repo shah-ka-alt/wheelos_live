@@ -81,15 +81,15 @@ WSGI_APPLICATION = 'auth.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'dpg-csj0pba3esus73fts1k0-a',
         'USER': 'postgres',
-        'PASSWORD' : '302081',
+        'PASSWORD' : 'SDha8CtepzJesoMTk2LuI9sEGSLtOGE1',
         'HOST' : 'localhost',
         'PORT':'5432',
     }
 }
 database_url = os.environ.get("DATABASE_URL")
-DATABASES['default'] = dj_database_url.parse('postgresql://wheelos_bq6n_user:4FMMeBgIAvqGhpG2AbtCZ7yNOm8ujQ2O@dpg-crqpghe8ii6s73bhbv6g-a.oregon-postgres.render.com/wheelos_bq6n')
+DATABASES['default'] = dj_database_url.parse('postgresql://wheelosdb_user:SDha8CtepzJesoMTk2LuI9sEGSLtOGE1@dpg-csj0pba3esus73fts1k0-a.oregon-postgres.render.com/wheelosdb')
 
 # DATABASES = {
 #     'default': {
