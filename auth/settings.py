@@ -88,8 +88,8 @@ DATABASES = {
         'PORT':'5432',
     }
 }
-database_url = os.environ.get("DATABASE_URL")
-DATABASES['default'] = dj_database_url.parse('postgresql://wheelosdb_user:SDha8CtepzJesoMTk2LuI9sEGSLtOGE1@dpg-csj0pba3esus73fts1k0-a.oregon-postgres.render.com/wheelosdb')
+# database_url = os.environ.get("DATABASE_URL")
+DATABASES['default'] = dj_database_url.parse('postgresql://postgres:JRBfpzLwmvXTuaOPqzxPWhITReUrQmPm@autorack.proxy.rlwy.net:45031/railway')
 
 # DATABASES = {
 #     'default': {
