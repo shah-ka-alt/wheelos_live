@@ -81,15 +81,15 @@ WSGI_APPLICATION = 'auth.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dpg-csj0pba3esus73fts1k0-a',
+        'NAME': 'dpg-d5hakqili9vc73acdacg-a',
         'USER': 'postgres',
-        'PASSWORD' : 'SDha8CtepzJesoMTk2LuI9sEGSLtOGE1',
+        'PASSWORD' : '6ESeR6fR7d9MOOrUH4Nfnw6CKSY2Hno6',
         'HOST' : 'localhost',
         'PORT':'5432',
     }
 }
-# database_url = os.environ.get("DATABASE_URL")
-DATABASES['default'] = dj_database_url.parse('postgresql://postgres:JRBfpzLwmvXTuaOPqzxPWhITReUrQmPm@autorack.proxy.rlwy.net:45031/railway')
+# # database_url = os.environ.get("DATABASE_URL")
+DATABASES['default'] = dj_database_url.parse('postgresql://project_gk8o_user:6ESeR6fR7d9MOOrUH4Nfnw6CKSY2Hno6@dpg-d5hakqili9vc73acdacg-a.oregon-postgres.render.com/project_gk8o')
 
 # DATABASES = {
 #     'default': {
@@ -172,3 +172,4 @@ DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 MEDIA_URL = f'https://wheelos.s3.us-east-2.amazonaws.com/media/'
 
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
