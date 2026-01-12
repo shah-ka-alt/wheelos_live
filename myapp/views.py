@@ -176,8 +176,8 @@ def tripOver(request, id):
 
         past.save()
         
-        parkerOver(curr.user.email,new_booking.user)
-        providerOver(new_booking.email,curr.user)
+        # parkerOver(curr.user.email,new_booking.user)
+        # providerOver(new_booking.email,curr.user)
 
         
         curr.delete()
@@ -228,8 +228,8 @@ def myBookings(request, id):
         curr.Booked_email = request.user.email
         curr.save()   
 
-        confirmParker(request.user.email, curr)
-        confirmProvider(curr.email, curr, request.user.username)
+        # confirmParker(request.user.email, curr)
+        # confirmProvider(curr.email, curr, request.user.username)
 
         return redirect('payment')
     except mapPointers.DoesNotExist:
@@ -307,3 +307,4 @@ def my_view(request):
             except Exception as e:
                 print(f"An error occurred: {str(e)}")
     return render(request, 'display.html')
+
